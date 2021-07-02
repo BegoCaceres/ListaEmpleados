@@ -20,6 +20,8 @@ export class EmpleadoListComponent implements OnInit {
   total_masculinos = 0;
   total_femeninos = 0;
 
+  radioButtonSeleccionado = "Todos";
+
   constructor() { }
 
   ngOnInit(): void {

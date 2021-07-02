@@ -3,18 +3,21 @@
         <div class="card-body">
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio"
-                    name="sexo" id="todos" value="Masculino">
+                    [(ngModel)]="radioButtonSeleccionado"
+                    name="sexo" id="todos" value="Todos">
                 <label class="form-check-label" for="todos">Todos({{total_empleados}})</label>
             </div>
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio"
+                    [(ngModel)]="radioButtonSeleccionado"
                     name="sexo" id="femenino" value="Femenino">
-                <label class="form-check-label" for="femenino">Femeninos({{total_femeninos}})</label>
+                <label class="form-check-label" for="femenino">Femenino({{total_femeninos}})</label>
             </div>
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio"
+                    [(ngModel)]="radioButtonSeleccionado"
                     name="sexo" id="masculino" value="Masculino">
-                <label class="form-check-label" for="masculino">Masculinos({{total_masculinos}})</label>
+                <label class="form-check-label" for="masculino">Masculino({{total_masculinos}})</label>
             </div>
         </div>
     </div>
@@ -22,25 +25,28 @@
         <div class="card-body">
             <table class="table">
                 <thead>
-                  <tr>
-                    <th>Dossier</th>
-                    <th>Nombre</th>
-                    <th>Apellidos</th>
-                    <th>Sexo</th>
-                    <th>Salario</th>
-                  </tr>
+                    <tr>
+                        <th>Dossier</th>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
+                        <th>Sexo</th>
+                        <th>Salario</th>
+                    </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let empleado of listaEmpleados">
-                    <td>{{empleado.dossier}}</td>
-                    <td>{{empleado.nombre}}</td>
-                    <td>{{empleado.apellidos}}</td>
-                    <td>{{empleado.sexo}}</td>
-                    <td>{{empleado.salario | currency: '€' }}</td>
-                  </tr>
-                 
+                    <!--recorremos la lista de empleados-->
+                    <ng-container *ngFor="let empleado of listaEmpleados">
+                        <!--mostramos la lista dependiendo del valor de radioButtonSeleccionado-->
+                        <tr *ngIf="radioButtonSeleccionado == 'Todos' || radioButtonSeleccionado == empleado.sexo">
+                            <td>{{empleado.dossier}}</td>
+                            <td>{{empleado.nombre}}</td>
+                            <td>{{empleado.apellidos}}</td>
+                            <td>{{empleado.sexo}}</td>
+                            <td>{{empleado.salario | currency: '€' }}</td>
+                        </tr>
+                    </ng-container>
                 </tbody>
-              </table>
+            </table>
         </div>
     </div>
 </div>
