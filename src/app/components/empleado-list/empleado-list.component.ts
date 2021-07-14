@@ -13,7 +13,7 @@ export class EmpleadoListComponent implements OnInit {
     { dossier:2,nombre:"Begoña", apellidos:"Cáceres", sexo:"Femenino",salario:25000},
     { dossier:3,nombre:"Oliver", apellidos:"Gonzalez", sexo:"Masculino",salario:20000},
     { dossier:4,nombre:"Rocio", apellidos:"Pérez", sexo:"Femenino",salario:18000},
-    { dossier:4,nombre:"Vero", apellidos:"López", sexo:"Femenino",salario:15000},
+    { dossier:5,nombre:"Vero", apellidos:"López", sexo:"Femenino",salario:15000},
   ];
   
   total_empleados = 0;
@@ -46,6 +46,10 @@ export class EmpleadoListComponent implements OnInit {
   getFemeninos():number{
     this.total_femeninos = this.listaEmpleados.filter(list => list.sexo === "Femenino").length;
     return this.total_femeninos;
+  }
+
+  empleadoRadioButtonChange(radiobuttonSelec:string):void{
+    this.radioButtonSeleccionado = radiobuttonSelec;
   }
 
   

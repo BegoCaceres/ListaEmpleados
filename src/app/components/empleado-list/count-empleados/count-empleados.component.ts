@@ -1,4 +1,10 @@
+//para pasar datos del componente hijo al padre
+import { Output } from '@angular/core';
+import { EventEmitter } from '@angular/core';
+//para pasar datos del componente padre al hijo
 import { Input } from '@angular/core';
+
+//
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -11,9 +17,16 @@ export class CountEmpleadosComponent implements OnInit {
   @Input() todos:number;
   @Input() masculinos:number;
   @Input() femeninos:number;
+   //para pasar datos del componente hijo al padre @Output
+  @Output() countRadioButtonChange = new EventEmitter<string>();
     
 
   radioButtonSeleccionado = "Todos";
+  
+  //tenemos que crear un metodo que emita el evento
+  radioChange():void {
+    this.countRadioButtonChange.emit(this.radioButtonSeleccionado);
+  }
 
   constructor() {
     this.todos = 0;
